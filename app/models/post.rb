@@ -1,7 +1,7 @@
 class MyValidator < ActiveModel::Validator
   def validate(post)
     unless post.title.match?('Secret') || post.title.match?('Top[number]') || post.title.match?('Guess')
-      error[:title]
+      error[:title] <<
 
 class Post < ActiveRecord::Base
   validates :title, presence: true
