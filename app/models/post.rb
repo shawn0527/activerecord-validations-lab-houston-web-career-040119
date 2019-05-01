@@ -5,9 +5,22 @@ class Post < ActiveRecord::Base
   validates :category, inclusion: {in: %w(Fiction, Non-Fiction)}
   validates :is_clickbait?, on: :create
 
+  CLICKBAIT_PATTERNS = [
+    /Won't Believe/i,
+    /Secret/i,
+    /Top [0-9]*/i,
+    /Guess/i
+  ]
+
   def is_clickbait?
-    if title.none?("Won't believe") || title.match?('Secret') || title.match?('Top[number]') || title.match?('Guess')
-      errors.add(:title, 'must be clickbait')
+    if CLICKBAIT_PATTERNS.none? { |pat| pat.match title }
+      errors.add(:title, "must be clickbait")
     end
   end
+
+  # def is_clickbait?
+  #   if title.none?("Won't believe") || title.match?('Secret') || title.match?('Top[number]') || title.match?('Guess')
+  #     errors.add(:title, 'must be clickbait')
+  #   end
+  # end
 end
