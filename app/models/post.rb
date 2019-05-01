@@ -1,5 +1,5 @@
 class MyValidator < ActiveModel::Validator
-  def validate(record)
+  def validate(post)
     record.title
 
 class Post < ActiveRecord::Base
