@@ -6,8 +6,8 @@ class Post < ActiveRecord::Base
   validates :is_clickbaity
 
   def is_clickbaity
-    unless self.title.match?("Won't believe") || self.title.match?('Secret') || self.title.match?('Top[number]') || self.title.match?('Guess')
-      self.errors << 'must be clickbait'
+    unless title.match?("Won't believe") || title.match?('Secret') || title.match?('Top[number]') || title.match?('Guess')
+      errors.add(:title, 'must be clickbait')
     end
   end
 end
