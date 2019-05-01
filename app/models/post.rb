@@ -7,5 +7,5 @@ class Post < ActiveRecord::Base
 
   def is_clickbaity(post)
     unless post.title.match?("Won't believe") || post.title.match?('Secret') || post.title.match?('Top[number]') || post.title.match?('Guess')
-
+      post.errors << 'must be clickbait'
 end
