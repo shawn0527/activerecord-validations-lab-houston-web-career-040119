@@ -1,4 +1,6 @@
 class MyValidator < ActiveModel::Validator
+  def validate(record)
+    record.title
 
 class Post < ActiveRecord::Base
   validates :title, presence: true
